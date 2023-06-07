@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.kotlincoroutines.R
 import com.example.kotlincoroutines.databinding.FragmentHomeBinding
 import com.example.kotlincoroutines.databinding.FragmentSplashScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 class SplashScreenFragment : Fragment() {
     private  var _binding: FragmentSplashScreenBinding?=null

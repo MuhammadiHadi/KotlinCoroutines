@@ -8,14 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.kotlincoroutines.databinding.FragmentHomeBinding
+import com.example.kotlincoroutines.ui.Repo.RepoClass
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import kotlin.concurrent.thread
-import kotlin.math.log
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var count : Int = 0
+    @Inject
+    lateinit var repo:RepoClass
     override fun onCreateView(
         inflater : LayoutInflater , container : ViewGroup? ,
         savedInstanceState : Bundle? ,
@@ -24,7 +28,7 @@ class HomeFragment : Fragment() {
         binding.button.setOnClickListener {
             increase()
 
-            //log statement
+            // log statement
             Log.d(TAG,"${Thread.currentThread().name}")
 
         }
@@ -42,12 +46,12 @@ class HomeFragment : Fragment() {
          }
 
         }
-
+     repo.userLogin("hadi@gmail.com","12345678")
 
         return binding.root
     }
     suspend fun getValue(){
-     val job=   CoroutineScope(Dispatchers.IO).async {
+     CoroutineScope(Dispatchers.IO).async {
        val task=  async { newTask() }
         val new= async { task() }
 
@@ -64,24 +68,24 @@ class HomeFragment : Fragment() {
 
     }
 
-   suspend  fun taskOne(){
+   private suspend  fun taskOne(){
         Log.d(TAG,"start task one")
         yield()
         Log.d(TAG,"end Task One")
     }
-   suspend  fun taskTwo(){
+   private suspend  fun taskTwo(){
         Log.d(TAG,"start task Two")
         yield()
         Log.d(TAG,"end Task Two")
     }
 
-   suspend fun newTask() : Int {
+   private suspend fun newTask() : Int {
         delay(3000)
        return 20
 
     }
     // async we are using for waiting same time
-     suspend fun task():Int{
+     private suspend fun task():Int{
       delay(3000)
         return 30
      }
