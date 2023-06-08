@@ -7,8 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.kotlincoroutines.R
 import com.example.kotlincoroutines.databinding.FragmentHomeBinding
-import com.example.kotlincoroutines.ui.Repo.RepoClass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -18,8 +19,7 @@ class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var count : Int = 0
-    @Inject
-    lateinit var repo:RepoClass
+
     override fun onCreateView(
         inflater : LayoutInflater , container : ViewGroup? ,
         savedInstanceState : Bundle? ,
@@ -34,19 +34,21 @@ class HomeFragment : Fragment() {
         }
         binding.btnD0.setOnClickListener {
 
-            CoroutineScope(Dispatchers.Main).launch {
-                taskOne()
-            }
-            CoroutineScope(Dispatchers.Main).launch {
-                taskTwo()
-            }
-         CoroutineScope(Dispatchers.Main).async {
-             getValue()
-             task()
-         }
+
+            findNavController().navigate(R.id.action_homeFragment_to_productFragment)
+//            CoroutineScope(Dispatchers.Main).launch {
+//                taskOne()
+//            }
+//            CoroutineScope(Dispatchers.Main).launch {
+//                taskTwo()
+//            }
+//         CoroutineScope(Dispatchers.Main).async {
+//             getValue()
+//             task()
+//         }
 
         }
-     repo.userLogin("hadi@gmail.com","12345678")
+
 
         return binding.root
     }
