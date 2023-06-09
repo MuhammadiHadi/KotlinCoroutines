@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlincoroutines.Repository.ProductListRepo
 import com.example.kotlincoroutines.Utils.NetworkResult
-import com.example.kotlincoroutines.model.Product
 import com.example.kotlincoroutines.model.ProductItem
-import com.example.kotlincoroutines.model.ProductX
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductListVm(private val productListRepo : ProductListRepo):ViewModel() {
+class ProductListVm (private val productListRepo : ProductListRepo):ViewModel() {
 
     val listLive: LiveData<NetworkResult<ProductItem>>
     get()=productListRepo.listLive

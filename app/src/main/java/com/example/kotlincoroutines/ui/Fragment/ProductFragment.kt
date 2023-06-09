@@ -17,6 +17,9 @@ import com.example.kotlincoroutines.ViewModel.ProductListVm
 import com.example.kotlincoroutines.databinding.FragmentProductBinding
 import com.example.kotlincoroutines.model.ProductItem
 import com.example.kotlincoroutines.ui.Adapter.ProductListAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
 
 class ProductFragment : Fragment() {
     private var _binding : FragmentProductBinding? = null
@@ -27,18 +30,17 @@ class ProductFragment : Fragment() {
         savedInstanceState : Bundle? ,
     ) : View {
         _binding = FragmentProductBinding.inflate(inflater , container , false)
-        val result = RetrofitHelper.getProductList().create(ApiService::class.java)
+        val result = RetrofitHelper().getProductList().create(ApiService::class.java)
         val repoProduct = ProductListRepo(result)
         viewModel = ViewModelProvider(this ,
             ProductListItemVMFactory(repoProduct)).get(ProductListVm::class.java)
-
+        viewModel.getItem()
         return binding.root
     }
 
     override fun onViewCreated(view : View , savedInstanceState : Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
-        viewModel.getItem()
 
         viewModel.listLive.observe(viewLifecycleOwner , Observer { it ->
             when (it) {

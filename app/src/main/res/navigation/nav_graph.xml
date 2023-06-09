@@ -23,12 +23,29 @@
         <action
             android:id="@+id/action_homeFragment_to_productFragment"
             app:destination="@id/productFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_sendFragment"
+            app:destination="@id/sendFragment" />
     </fragment>
     <fragment
         android:id="@+id/productFragment"
         android:name="com.example.kotlincoroutines.ui.Fragment.ProductFragment"
         android:label="ProductFragment"
         tools:layout="@layout/fragment_product"/>
+    <fragment
+        android:id="@+id/sendFragment"
+        android:name="com.example.kotlincoroutines.ui.Fragment.SendDataFragment"
+        android:label="SendDataFragment"
+        tools:layout="@layout/fragment_send_data">
+        <action
+            android:id="@+id/action_sendFragment_to_receiveFragment"
+            app:destination="@id/receiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receiveFragment"
+        android:name="com.example.kotlincoroutines.ui.Fragment.ReceiveDataFragment"
+        android:label="ReceiveDataFragment"
+        tools:layout="@layout/fragment_receive_data"/>
 
 
 </navigation>

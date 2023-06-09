@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.kotlincoroutines.Api.ApiService
 import com.example.kotlincoroutines.Utils.NetworkResult
-import com.example.kotlincoroutines.model.Product
 import com.example.kotlincoroutines.model.ProductItem
-import com.example.kotlincoroutines.model.ProductX
+import javax.inject.Inject
 
-class ProductListRepo(private val apiService : ApiService) {
+class ProductListRepo (private val apiService : ApiService) {
 
    private val _productListLive=MutableLiveData<NetworkResult<ProductItem>>()
      val listLive: LiveData<NetworkResult<ProductItem>>

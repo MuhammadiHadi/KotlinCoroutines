@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincoroutines.databinding.ItemListLayoutBinding
-import com.example.kotlincoroutines.model.Product
 import com.example.kotlincoroutines.model.ProductX
 
 

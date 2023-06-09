@@ -1,7 +1,5 @@
 package com.example.kotlincoroutines.Utils
 
-import com.example.kotlincoroutines.model.Product
-
 sealed  class NetworkResult <T>(val data : T? = null , val message : String? = null) {
 
     class Success<T>(data : T) :NetworkResult<T>(data)
